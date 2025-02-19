@@ -10,49 +10,48 @@ class ResultScreen extends StatelessWidget {
     final votingProvider = Provider.of<VotingProvider>(context);
     final isTie = votingProvider.isTie;
     final winners = votingProvider.winners;
+    final highestVotes = winners.isNotEmpty ? winners.first.votes : 0;
+    
     return Scaffold(
       backgroundColor: Colors.blue[50],
       appBar: AppBar(
         backgroundColor: Colors.blue[100],
-        title: const Text("VOTING RESULTS"),
+        title: const Text("Voting Results"),
       ),
       body: Column(
         children: [
-          Expanded(child: ListView.builder(
-            itemCount: votingProvider.candidates.length,
-            itemBuilder: (context, index) {
-              final candidate = votingProvider.candidates[index];
-              final isWinner = winners.contains(candidate);
-              return ListTile(
-                title: Text(
-                  candidate.name,
-                  style: TextStyle(
-                    fontWeight:
-                      isWinner? FontWeight.bold:FontWeight.normal,
-                      color: isWinner ? Colors.green :Colors.black,
+          Expanded(
+            child: ListView.builder(
+              itemCount: winners.length,
+              itemBuilder: (context, index) {
+                final candidate = winners[index];
+                return ListTile(
+                  title: Text(
+                    candidate.name,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green,
                     ),
                   ),
-                trailing: Text("Votes : ${candidate.votes}"),
-                subtitle: isWinner
-                  ? Text(isTie? "Tie for Winner":"Winner")
-                  : null,
+                  trailing: Text("Vote : ${candidate.votes}"),
+                  subtitle: Text(isTie ? "Tie for Winner" : "Winner"),
                 );
               },
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(16),
-          child: Text(
-            isTie ? "It's a tie!" : "",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-              color: isTie ? Colors.red : Colors.green
+            child: Text(
+              isTie ? "It's a tie!" : "Highest Vote: $highestVotes",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: isTie ? Colors.red : Colors.green,
+              ),
             ),
-            ),
-            ),
-            Spacer(),
+          ),
+          const SizedBox(height: 20),
         ],
       ),
     );

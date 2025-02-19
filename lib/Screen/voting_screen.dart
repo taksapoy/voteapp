@@ -15,7 +15,7 @@ class VotingScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.purple[50],
       appBar: AppBar(
-        title: const Text('VOTE FOR A CANDIDATE'),
+        title: const Text('Vote for a Candidate'),
         backgroundColor: Colors.purple[100],
       ),
       body: Column(

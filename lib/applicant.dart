@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'candidate_detail.dart';
 import 'package:voteapp/Screen/voting_screen.dart';
 
 class Applicant extends StatelessWidget {
@@ -16,18 +17,26 @@ class Applicant extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               for (int i = 0; i < 4; i++) ...[
-                Container(
-                  width: double.infinity,  // ทำให้ความกว้างเต็มที่
-                  height: 80,  // ความสูงคงที่
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.white,
+                GestureDetector(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CandidateDetail(candidateIndex: i),
+                    ),
                   ),
-                  child: Text(
-                    _getCandidateInfo(i),
-                    style: TextStyle(fontSize: 16),
+                  child: Container(
+                    width: double.infinity,
+                    height: 80,
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.white,
+                    ),
+                    child: Text(
+                      _getCandidateInfo(i),
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -60,15 +69,16 @@ class Applicant extends StatelessWidget {
   String _getCandidateInfo(int index) {
     switch (index) {
       case 0:
-        return 'Candidate 1\nพรรคเพื่อน้อง พี่พร้อมพัฒนา';
+        return 'Candidate 1\nพรรคเลิกโสดแห่งชาติ';
       case 1:
-        return 'Candidate 2\nพรรคตับพักใตแล้วใช้หัวใจกับใครสักคน';
+        return 'Candidate 2\nพรรคไม่ทำงานแต่ได้เงิน';
       case 2:
-        return 'Candidate 3\nพรรคผ่อนให้เพียงพอ';
+        return 'Candidate 3\nพรรคหลบงานการเมือง';
       case 3:
-        return 'Candidate 4\nพรรคสะดุมาส่งครับ';
+        return 'Candidate 4\nพรรคกินก่อน ค่อยคิดทีหลัง';
       default:
         return '';
     }
   }
 }
+

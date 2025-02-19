@@ -39,7 +39,7 @@ class IntroPage extends StatelessWidget {
                 ),
                 padding: const EdgeInsets.all(24),
                 child: const Text(
-                  "Click To Vote",
+                  "Next",
                   style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
               ),

@@ -11,7 +11,7 @@ class CandidateDetail extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.pink[50],
       appBar: AppBar(
-        title: Text('Candidate Details'),
+        title: Text('Candidate Detail'),
         backgroundColor: Colors.pink[100],
       ),
       body: Padding(
